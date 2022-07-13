@@ -3,14 +3,14 @@
     --cor-texto: #fff;
     --tamanho-texto: 1.5em;
     --tamanho-area-jogo: 400px;
-    --cor-quadrado-jogo: #fff;
-    --cor-quadrado-jogo-ativo: grey;
-    --borda-quadrado-jogo: 5px solid #000;
+    --cor-square: #fff;
+    --cor-square-active: grey;
+    --borda-square: 5px solid #000;
     --cor-simbolo-jogo: #000;
     --tamanho-simbolo-jogo: 4em;
     --cor-botao-reiniciar: green;
     --cor-botao-reiniciar-borda: darkgreen;
-    --cor-botao-reiniciar-ativo: darkgreen;
+    --cor-botao-reiniciar-active: darkgreen;
 }
 
 html,
@@ -24,12 +24,12 @@ body {
     height: 100%;
 }
 
-.jogador-ativo {
+.jogador-active {
     color: var(--cor-texto);
     font-size: var(--tamanho-texto);
 }
 
-.resultado-partida {
+.winner-selected {
     color: var(--cor-texto);
     font-size: var(--tamanho-texto);
 }
@@ -43,10 +43,10 @@ body {
     gap: 10px;
 }
 
-.quadrado-jogo {
-    background-color: var(--cor-quadrado-jogo);
+.square {
+    background-color: var(--cor-square);
     color: var(--cor-simbolo-jogo);
-    border: var(--borda-quadrado-jogo);
+    border: var(--borda-square);
     font-weight: bold;
     font-size: var(--tamanho-simbolo-jogo);
     cursor: pointer;
@@ -55,8 +55,8 @@ body {
     align-items: center;
 }
 
-.quadrado-jogo:active {
-    background-color: var(--cor-quadrado-jogo-ativo);
+.square:active {
+    background-color: var(--cor-square-active);
 }
 
 .botao-reiniciar {
@@ -70,5 +70,11 @@ body {
 }
 
 .botao-reiniciar:active {
-    background-color: var(--cor-botao-reiniciar-ativo);
+    background-color: var(--cor-botao-reiniciar-active);
+}
+
+.gamer, .winner {
+    font-size: 30px;
+    margin-top: 10px;
+    color: #fff;
 }
