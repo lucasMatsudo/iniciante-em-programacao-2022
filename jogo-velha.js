@@ -71,5 +71,3 @@ function checaQuadrados(quadrado1, quadrado2, quadrado3){
 function reiniciarJogo() {
 window.location.reload();
 }
-
-//:D
