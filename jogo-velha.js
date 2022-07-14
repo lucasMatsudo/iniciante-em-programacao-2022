@@ -1,12 +1,12 @@
 var jogador = null;
 var jogadorAtivo = document.getElementById('jogador-ativo');
 const TodosOsQuadradosJogo = document.querySelectorAll(".quadrado-jogo");
-const X = "X";
-const O = "O";
+let acabou = false
+let jogadorAtual = X
 
 mudaJogador('X');
 
-quadrado.innerHTML = gamer;
+quadrado.innerHTML = jogador;
     square.style.color = '#000';
 
     if (jogador === 'X') {
@@ -15,7 +15,7 @@ quadrado.innerHTML = gamer;
         jogador = 'X';
     }
 
-    mudaJogador(gamer);
+    mudaJogador(jogador);
 
 function mudaJogador(valor) {
     jogador = valor;
@@ -48,10 +48,27 @@ function verificaVitoriaDoJogador(){
     ]
     let posicoesQuadrados = [a1, a2, a3, b1, b2, b3, c1, c2, c3]
 
-/*
+function selecionarArea(posicaoLinha, posicaoColuna){
+    quadradoJaSelecionado = document.querySelector(`[data-linha='${posicaoLinha}'][data-coluna='${posicaoColuna}']`).textContent != ""
+    jogoAcabou = acabou == true
+    if (jogadorAtual == X) {
+        if (quadradoJaFoiSelecionado || jogoAcabou) {
+        return
+    } else {
+        marcaPontoPassaRodada(X, O, posicaoLinha, posicaoColuna)
+    }
+    } else {
+        if (quadradoJaFoiSelecionado || jogoAcabou) {
+        return
+    } else {
+        marcaPontoPassaRodada(O, X, posicaoLinha, posicaoColuna)
+    }
+}
+
+
 function reiniciarJogo() {
     window.location.reload();
     }
-*/
 
+    }   
 }
