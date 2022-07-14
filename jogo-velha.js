@@ -1,74 +1,73 @@
-var jogador = null;
-var jogadorAtivo = document.getElementById('jogador-ativo');
-const TodosOsQuadradosJogo = document.querySelectorAll(".quadrado-jogo");
-let acabou = false
-let jogadorAtual = X
+const quadradosJogo = document.querySelectorAll(".quadrado-jogo");
+const X = "X";
+const O = "O";
 
-mudaJogador('X');
-
-quadrado.innerHTML = jogador;
-    square.style.color = '#000';
-
-    if (jogador === 'X') {
-        jogador = 'O';
-    } else {
-        jogador = 'X';
-    }
-
-    mudaJogador(jogador);
-
-function mudaJogador(valor) {
-    jogador = valor;
-    jogadorAtivo.innerHTML = jogador;
+function proximoJogador(){
+    jogador === "X" ? jogador = "O" : jogador = "X";
+    marcarJogadorAtivo(jogador);
 }
 
-function verificaVitoriaDoJogador(){
+let jogador = "X";
+marcarJogadorAtivo(jogador);
 
-    const a1 = document.querySelector(`[data-linha='${1}'][data-coluna='${1}']`);
-    const a2 = document.querySelector(`[data-linha='${1}'][data-coluna='${2}']`);
-    const a3 = document.querySelector(`[data-linha='${1}'][data-coluna='${3}']`);
-
-    const b1 = document.querySelector(`[data-linha='${2}'][data-coluna='${1}']`);
-    const b2 = document.querySelector(`[data-linha='${2}'][data-coluna='${2}']`);
-    const b3 = document.querySelector(`[data-linha='${2}'][data-coluna='${3}']`);
-
-    const c1 = document.querySelector(`[data-linha='${3}'][data-coluna='${1}']`);
-    const c2 = document.querySelector(`[data-linha='${3}'][data-coluna='${2}']`);
-    const c3 = document.querySelector(`[data-linha='${3}'][data-coluna='${3}']`);
-
-    let condicoesDeVitoria= [
-        [a1, a2, a3]
-        [a1, b1, c1]
-        [a1, b3, c3]
-        [b1, b2, b3]
-        [c1, c2, c3]
-        [c1, b2, a3]
-        [a2, b2, c2]
-        [a3, b3, c3]
-    ]
-    let posicoesQuadrados = [a1, a2, a3, b1, b2, b3, c1, c2, c3]
-
-function selecionarArea(posicaoLinha, posicaoColuna){
-    quadradoJaSelecionado = document.querySelector(`[data-linha='${posicaoLinha}'][data-coluna='${posicaoColuna}']`).textContent != ""
-    jogoAcabou = acabou == true
-    if (jogadorAtual == X) {
-        if (quadradoJaFoiSelecionado || jogoAcabou) {
-        return
-    } else {
-        marcaPontoPassaRodada(X, O, posicaoLinha, posicaoColuna)
+function selecionarArea(posicaoLinha, posicaoColuna) {
+    const getText = document.querySelector(`[data-linha='${posicaoLinha}'][data-coluna='${posicaoColuna}']`).textContent;
+    if(jogador === "X"){
+        if(getText === ""){
+        desenharSimbolo(X, posicaoLinha, posicaoColuna);
+        condicaoVitoria();
+        proximoJogador();
     }
     } else {
-        if (quadradoJaFoiSelecionado || jogoAcabou) {
-        return
-    } else {
-        marcaPontoPassaRodada(O, X, posicaoLinha, posicaoColuna)
+        if(getText === ""){
+        desenharSimbolo(O, posicaoLinha, posicaoColuna);
+        condicaoVitoria();
+        proximoJogador();
+        }
     }
 }
+
+
+function condicaoVitoria(){
+    const quadrado = document.querySelectorAll(".quadrado-jogo");
+    if(  
+        checaQuadrados(quadrado[0], quadrado[1], quadrado[2])  |
+        checaQuadrados(quadrado[3], quadrado[4], quadrado[5]) ||
+        checaQuadrados(quadrado[6], quadrado[7], quadrado[8]) ||
+
+        checaQuadrados(quadrado[0], quadrado[3], quadrado[6]) ||
+        checaQuadrados(quadrado[1], quadrado[4], quadrado[7]) ||
+        checaQuadrados(quadrado[2], quadrado[5], quadrado[8]) ||
+
+        checaQuadrados(quadrado[0], quadrado[4], quadrado[8]) ||
+        checaQuadrados(quadrado[2], quadrado[4], quadrado[6])
+
+      )
+    {
+        quadradosJogo.forEach((quadrado) => {quadrado.removeAttribute("onclick");});
+            exibirResultado(`O Jogador ${jogador} venceu!`);
+    }else{
+            chechaTodosQuadrados() ? exibirResultado("Empate!"): '';
+    }
+}
+
+function chechaTodosQuadrados(){
+for(let i in quadradosJogo){
+    if(quadradosJogo[i].textContent ===''){
+        return false;
+    }       
+}
+        return true;
+}
+
+function checaQuadrados(quadrado1, quadrado2, quadrado3){
+    if(quadrado1.textContent === quadrado2.textContent && quadrado1.textContent === quadrado3.textContent && quadrado1.textContent !== ""){
+        return true;         
+    }
+        return false;
+    }
 
 
 function reiniciarJogo() {
-    window.location.reload();
-    }
-
-    }   
+window.location.reload();
 }

@@ -1,4 +1,4 @@
-function mostraResultado(mensagem) {
+function exibirResultado(mensagem) {
     const areaResultado = document.querySelector(".resultado-partida");
     if (mensagem) {
         areaResultado.innerHTML = mensagem;
@@ -9,7 +9,7 @@ function mostraResultado(mensagem) {
 
 function desenharSimbolo(simbolo, posicaoLinha, posicaoColuna) {
     const quadradoJogo = document.querySelector(`[data-linha='${posicaoLinha}'][data-coluna='${posicaoColuna}']`);
-    quadradoJogo.innerHTML = simbolo;
+    quadradoJogo.innerHTML = simbolo
 }
 
 function marcarJogadorAtivo(simbolo) {
